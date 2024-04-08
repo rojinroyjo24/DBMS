@@ -1,0 +1,87 @@
+
+test> use college
+switched to db college
+college> db.s2mca.find({name:/^j/});
+[
+  {
+    _id: ObjectId('661388947b3f75dd218bf204'),
+    roll: 3,
+    name: 'june',
+    age: 21,
+    div: 'c',
+    sub: [ 'phy', 'eng' ]
+  }
+]
+college> db.s2mca.find({sub:/che/});
+[
+  {
+    _id: ObjectId('6613886d7b3f75dd218bf202'),
+    roll: 1,
+    name: 'ram',
+    age: 20,
+    div: 'A',
+    sub: [ 'phy', 'che' ]
+  }
+]
+college> db.s2mca.find({name:/june/i});
+[
+  {
+    _id: ObjectId('661388947b3f75dd218bf204'),
+    roll: 3,
+    name: 'june',
+    age: 21,
+    div: 'c',
+    sub: [ 'phy', 'eng' ]
+  }
+]
+college> db.s2mca.find()
+[
+  {
+    _id: ObjectId('6613886d7b3f75dd218bf202'),
+    roll: 1,
+    name: 'ram',
+    age: 20,
+    div: 'A',
+    sub: [ 'phy', 'che' ]
+  },
+  {
+    _id: ObjectId('661388887b3f75dd218bf203'),
+    roll: 2,
+    name: 'sam',
+    age: 21,
+    div: 'b',
+    sub: [ 'phy', 'mat' ]
+  },
+  {
+    _id: ObjectId('661388947b3f75dd218bf204'),
+    roll: 3,
+    name: 'june',
+    age: 21,
+    div: 'c',
+    sub: [ 'phy', 'eng' ]
+  }
+]
+college> db.sub.find({sub : /eng/ });
+
+college> db.s2mca.find({sub : /eng/ });
+[
+  {
+    _id: ObjectId('661388947b3f75dd218bf204'),
+    roll: 3,
+    name: 'june',
+    age: 21,
+    div: 'c',
+    sub: [ 'phy', 'eng' ]
+  }
+]
+college> db.s2mca.find({name:/june/i});
+[
+  {
+    _id: ObjectId('661388947b3f75dd218bf204'),
+    roll: 3,
+    name: 'june',
+    age: 21,
+    div: 'c',
+    sub: [ 'phy', 'eng' ]
+  }
+]
