@@ -1,0 +1,25 @@
+
+test> use univ
+switched to db univ
+univ> show tables;
+s1mca
+s2mca
+univ> db.s1mca.aggregate([{$match:{gender:'female'}}])
+[
+  {
+    _id: ObjectId('6613b14b116e58fa798bf208'),
+    roll: 3,
+    name: 'suhana',
+    age: 21,
+    gender: 'female',
+    dname: 'mca',
+    mark: 80
+  }
+]
+... stud:{$sum:1}}}])
+
+univ> db.s1mca.aggregate([{$group:{_id:'$dname',total_stud:{$sum:1}}}])
+
+[ { _id: 'mtech', total_stud: 1 }, 
+  { _id: 'mca', total_stud: 4 } ]
+univ>
