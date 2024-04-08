@@ -4,6 +4,7 @@ switched to db univ
 univ> show tables;
 s1mca
 s2mca
+1.
 univ> db.s1mca.aggregate([{$match:{gender:'female'}}])
 [
   {
@@ -16,8 +17,7 @@ univ> db.s1mca.aggregate([{$match:{gender:'female'}}])
     mark: 80
   }
 ]
-... stud:{$sum:1}}}])
-
+2.
 univ> db.s1mca.aggregate([{$group:{_id:'$dname',total_stud:{$sum:1}}}])
 
 [ { _id: 'mtech', total_stud: 1 }, 
