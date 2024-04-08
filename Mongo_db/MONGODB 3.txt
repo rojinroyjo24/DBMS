@@ -205,31 +205,3 @@ college> db.s2mca.aggregate([{$group:{_id:'roll',averageAge:{$avg:'$age'}}}]coll
     div: 'c',
     sub: [ 'phy', 'eng' ]
   }
-college> db.s2mca.find({name:/june/i});
-[
-  {
-    _id: ObjectId('661388947b3f75dd218bf204'),
-    roll: 3,
-    name: 'june',
-    age: 21,
-    div: 'c',
-    sub: [ 'phy', 'eng' ]
-  }
-]
-college> db.course.find({ code: /ENG/ });
-
-college> db.students.find({ name: /^J/ });
-
-college> db.course.find({ code: /ENG/ });
-
-college> db.s2mca.find({sub:/che/});
-[
-  {
-    _id: ObjectId('6613886d7b3f75dd218bf202'),
-    roll: 1,
-    name: 'ram',
-    age: 20,
-    div: 'A',
-    sub: [ 'phy', 'che' ]
-  }
-]
