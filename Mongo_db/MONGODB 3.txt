@@ -205,3 +205,16 @@ college> db.s2mca.aggregate([{$group:{_id:'roll',averageAge:{$avg:'$age'}}}]coll
     div: 'c',
     sub: [ 'phy', 'eng' ]
   }
+college> db.s2mca.aggregate([{$group:{_id:'$gender',count:{$sum:1}}}]);
+[ { _id: null, count: 3 } ]
+college> db.s2mca.aggregate([{$sort:{credit:-1}},{$limit:1}])
+[
+  {
+    _id: ObjectId('6613886d7b3f75dd218bf202'),
+    roll: 1,
+    name: 'ram',
+    age: 20,
+    div: 'A',
+    sub: [ 'phy', 'che' ]
+  }
+]
