@@ -1,0 +1,178 @@
+test> use univ
+switched to db univ
+univ> db.createCollection("s1mca")
+{ ok: 1 }
+univ> db.s1mca.insert({roll:1,name:'alvin',age:20,gender:'male',dname:'mca',mark:50})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6613b062116e58fa798bf202') }
+}
+univ> db.s2mca.insert({roll:2,name:'anandhu',age:21,gender:'male',dname:'mca',mark:60})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6613b097116e58fa798bf203') }
+}
+univ> db.s2mca.insert({roll:3,name:'suhana',age:21,gender:'female',dname:'mca',mark:80})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6613b0b0116e58fa798bf204') }
+}
+univ> db.s2mca.insert({roll:4,name:'nandhu',age:21,gender:'male',dname:'mca',mark:75})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6613b0c7116e58fa798bf205') }
+}
+univ> db.s1mca.drop()
+true
+univ> db.createCollection("s1mca")
+{ ok: 1 }
+univ> db.s1mca.insert({roll:1,name:'alvin',age:20,gender:'male',dname:'mca',mark:50})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6613b12e116e58fa798bf206') }
+}
+univ> db.s1mca.insert({roll:2,name:'anandhu',age:21,gender:'male',dname:'mca',mark:60})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6613b13a116e58fa798bf207') }
+}
+univ> db.s1mca.insert({roll:3,name:'suhana',age:21,gender:'female',dname:'mca',mark:80})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6613b14b116e58fa798bf208') }
+}
+univ> db.s1mca.insert({roll:4,name:'nandhu',age:21,gender:'male',dname:'mca',mark:75})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6613b156116e58fa798bf209') }
+}
+univ>
+[
+  {
+    _id: ObjectId('6613b12e116e58fa798bf206'),
+    roll: 1,
+    name: 'alvin',
+    age: 20,
+    gender: 'male',
+    dname: 'mca',
+    mark: 50
+  },
+  {
+    _id: ObjectId('6613b13a116e58fa798bf207'),
+    roll: 2,
+    name: 'anandhu',
+    age: 21,
+    gender: 'male',
+    dname: 'mca',
+    mark: 60
+  },
+  {
+    _id: ObjectId('6613b14b116e58fa798bf208'),
+    roll: 3,
+    name: 'suhana',
+    age: 21,
+    gender: 'female',
+    dname: 'mca',
+    mark: 80
+  },
+  {
+    _id: ObjectId('6613b156116e58fa798bf209'),
+    roll: 4,
+    name: 'nandhu',
+    age: 21,
+    gender: 'male',
+    dname: 'mca',
+    mark: 75
+  }
+]
+univ> db.s1mca.find({ gender: "female" })
+[
+  {
+    _id: ObjectId('6613b14b116e58fa798bf208'),
+    roll: 3,
+    name: 'suhana',
+    age: 21,
+    gender: 'female',
+    dname: 'mca',
+    mark: 80
+  }
+]
+univ> db.s1mca.find({ gender: "male" })
+[
+  {
+    _id: ObjectId('6613b12e116e58fa798bf206'),
+    roll: 1,
+    name: 'alvin',
+    age: 20,
+    gender: 'male',
+    dname: 'mca',
+    mark: 50
+  },
+  {
+    _id: ObjectId('6613b13a116e58fa798bf207'),
+    roll: 2,
+    name: 'anandhu',
+    age: 21,
+    gender: 'male',
+    dname: 'mca',
+    mark: 60
+  },
+  {
+    _id: ObjectId('6613b156116e58fa798bf209'),
+    roll: 4,
+    name: 'nandhu',
+    age: 21,
+    gender: 'male',
+    dname: 'mca',
+    mark: 75
+  }
+]
+...   { $group: { _id: "$department", total_students: { $sum: 1 } } }
+... ])
+[ { _id: null, total_students: 4 } ]
+...   { $match: { gender: "male" } },
+...   { $group: { _id: "$department", total_male_students: { $sum: 1 } } }
+... ])
+[ { _id: null, total_male_students: 3 } ]
+...   { $group: { _id: "$department", total_students: { $sum: 1 } } }
+... ])
+[ { _id: null, total_students: 4 } ]
+...   { $group: { _id: "$department", total_students: { $sum: 1 } } }
+...   { $group: { _id: "$department", total_students: { $sum: 1 } } }
+...   { $group: { _id: "$dname", total_students: { $sum: 1 } } }
+...
+univ> db.s1mca.aggregate([
+... {$group:{_id: "$:dname",total_students:{ $SUM: 1 } } }
+... ])
+univ> db.s1mca.aggregate([ { $group: { _id: "$:dname", total_students: { $sum: 1 } } }] )
+[ { _id: null, total_students: 4 } ]
+univ> db.s1mca.aggregate([ { $group: { _id: "$dname", total_students: { $sum: 1 } } }] )
+[ { _id: 'mca', total_students: 4 } ]
+univ> db.s1mca.insert({roll:5,name:'rojin',age:21,gender:'male',dname:'mtech',mark:85})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6613b505116e58fa798bf20a') }
+}
+univ> db.s1mca.aggregate([ { $group: { _id: "$dname", total_students: { $sum: 1 } } }] )
+[
+  { _id: 'mtech', total_students: 1 },
+  { _id: 'mca', total_students: 4 }
+]
+univ> db.s1mca.aggregate([
+...   { $match: { gender: "male" } },
+...   { $group: { _id: "$department", total_male_students: { $sum: 1 } } }
+... ])
+[ { _id: null, total_male_students: 4 } ]
+univ> db.s1mca.aggregate([ { $match: { gender: "male" } }, { $group: { _id: "$dname", total_male_students: { $sum: 1 } } }]
+... db.s1mca.aggregate([ { $match: { gender: "male" } }, { $group: { _id: "$dname", total_male_students: { $sum: 1 } } }]
+univ> db.s1mca.aggregate([ { $match: { gender: "male" } }, { $group: { _id:univ> db.s1mca.aggregate([ { $match: { gender: "male" } }, { $group: { _id: "$dname", total_male_students: { $sum: 1 } } }] )
+[
+  { _id: 'mca', total_male_students: 3 },
+  { _id: 'mtech', total_male_students: 1 }
+]
+...   { $group: { _id: "$department", avg_marks: { $avg: "$marks" } } }
+... ])
+univ> db.s1mca.aggregate([ { $group: { _id: "$dname", avg_marks: { $avg: "$mark" } } }] )
+[ { _id: 'mca', avg_marks: 66.25 }, { _id: 'mtech', avg_marks: 85 } ]
+univ>
