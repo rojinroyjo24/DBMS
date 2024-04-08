@@ -128,23 +128,7 @@ univ> db.s1mca.find({ gender: "male" })
     mark: 75
   }
 ]
-...   { $group: { _id: "$department", total_students: { $sum: 1 } } }
-... ])
-[ { _id: null, total_students: 4 } ]
-...   { $match: { gender: "male" } },
-...   { $group: { _id: "$department", total_male_students: { $sum: 1 } } }
-... ])
-[ { _id: null, total_male_students: 3 } ]
-...   { $group: { _id: "$department", total_students: { $sum: 1 } } }
-... ])
-[ { _id: null, total_students: 4 } ]
-...   { $group: { _id: "$department", total_students: { $sum: 1 } } }
-...   { $group: { _id: "$department", total_students: { $sum: 1 } } }
-...   { $group: { _id: "$dname", total_students: { $sum: 1 } } }
-...
-univ> db.s1mca.aggregate([
-... {$group:{_id: "$:dname",total_students:{ $SUM: 1 } } }
-... ])
+
 univ> db.s1mca.aggregate([ { $group: { _id: "$:dname", total_students: { $sum: 1 } } }] )
 [ { _id: null, total_students: 4 } ]
 univ> db.s1mca.aggregate([ { $group: { _id: "$dname", total_students: { $sum: 1 } } }] )
@@ -159,20 +143,12 @@ univ> db.s1mca.aggregate([ { $group: { _id: "$dname", total_students: { $sum: 1 
   { _id: 'mtech', total_students: 1 },
   { _id: 'mca', total_students: 4 }
 ]
-univ> db.s1mca.aggregate([
-...   { $match: { gender: "male" } },
-...   { $group: { _id: "$department", total_male_students: { $sum: 1 } } }
-... ])
-[ { _id: null, total_male_students: 4 } ]
-univ> db.s1mca.aggregate([ { $match: { gender: "male" } }, { $group: { _id: "$dname", total_male_students: { $sum: 1 } } }]
-... db.s1mca.aggregate([ { $match: { gender: "male" } }, { $group: { _id: "$dname", total_male_students: { $sum: 1 } } }]
+
 univ> db.s1mca.aggregate([ { $match: { gender: "male" } }, { $group: { _id:univ> db.s1mca.aggregate([ { $match: { gender: "male" } }, { $group: { _id: "$dname", total_male_students: { $sum: 1 } } }] )
 [
   { _id: 'mca', total_male_students: 3 },
   { _id: 'mtech', total_male_students: 1 }
 ]
-...   { $group: { _id: "$department", avg_marks: { $avg: "$marks" } } }
-... ])
 univ> db.s1mca.aggregate([ { $group: { _id: "$dname", avg_marks: { $avg: "$mark" } } }] )
 [ { _id: 'mca', avg_marks: 66.25 }, { _id: 'mtech', avg_marks: 85 } ]
 univ>
