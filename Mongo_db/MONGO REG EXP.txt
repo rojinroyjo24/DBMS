@@ -1,6 +1,7 @@
 
 test> use college
 switched to db college
+1.
 college> db.s2mca.find({name:/^j/});
 [
   {
@@ -12,6 +13,7 @@ college> db.s2mca.find({name:/^j/});
     sub: [ 'phy', 'eng' ]
   }
 ]
+2.
 college> db.s2mca.find({sub:/che/});
 [
   {
@@ -23,6 +25,19 @@ college> db.s2mca.find({sub:/che/});
     sub: [ 'phy', 'che' ]
   }
 ]
+3.
+college> db.s2mca.find({sub : /eng/ });
+[
+  {
+    _id: ObjectId('661388947b3f75dd218bf204'),
+    roll: 3,
+    name: 'june',
+    age: 21,
+    div: 'c',
+    sub: [ 'phy', 'eng' ]
+  }
+]
+4.
 college> db.s2mca.find({name:/june/i});
 [
   {
@@ -52,30 +67,6 @@ college> db.s2mca.find()
     div: 'b',
     sub: [ 'phy', 'mat' ]
   },
-  {
-    _id: ObjectId('661388947b3f75dd218bf204'),
-    roll: 3,
-    name: 'june',
-    age: 21,
-    div: 'c',
-    sub: [ 'phy', 'eng' ]
-  }
-]
-college> db.sub.find({sub : /eng/ });
-
-college> db.s2mca.find({sub : /eng/ });
-[
-  {
-    _id: ObjectId('661388947b3f75dd218bf204'),
-    roll: 3,
-    name: 'june',
-    age: 21,
-    div: 'c',
-    sub: [ 'phy', 'eng' ]
-  }
-]
-college> db.s2mca.find({name:/june/i});
-[
   {
     _id: ObjectId('661388947b3f75dd218bf204'),
     roll: 3,
